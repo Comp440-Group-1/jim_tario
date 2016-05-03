@@ -1,0 +1,37 @@
+Disaster Recovery Plan(DRP) 
+The plan must take into account : sensitivity of data, data loss tolerance, required availability, etc. 
+
+The plan can be based on few a solutions:
+-Failover clustering
+	This option reduces down time since a fail safe is put in place to take over if database goes down
+-Database mirroring
+	Minimize data loss and have very good availability
+-Replication
+-Log shipping
+-Backup and restore
+	Backup should be stored in an off-site location, different type of backups can be implemented (full, differential, partial)
+
+
+For the purpose of this project Backup and Restore and Database Mirroring are viable choices. Cloud services and owned hardware can allow a solid DRP.
+
+DRP Policy (effective immediately):
+
+Plan #1: Full Backup
+
+Description: Perform full backup on all system databases
+
+Schedule: Occurs on a bi-weekly basis Mondays at 12:00 AM
+
+Step 1. Integrity Check
+
+Step 2: Perform full backup 
+
+---------------------------------
+
+Plan #2: Differential Backup 
+
+Description: Perform differential backup on all databases
+
+Schedule: Occurs every day every 12 hours between 6:00 AM and 11:59 PM
+
+Step 1. Perform backup
