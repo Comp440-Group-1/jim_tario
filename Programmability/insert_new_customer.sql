@@ -1,7 +1,7 @@
 USE [s16guest53]
 GO
 
-/****** Object:  StoredProcedure [dbo].[number_of_downloads]    Script Date: 5/2/2016 6:30:35 PM ******/
+/****** Object:  StoredProcedure [dbo].[insert_new_customer]    Script Date: 5/2/2016 11:17:58 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -12,14 +12,13 @@ GO
 -- =============================================
 -- Author:		Jim Tario
 -- Create date: April 30, 2016
--- Description:	count the number of downloads
+-- Description:	Insert new values to customer table
 -- =============================================
 
-
-
-CREATE PROCEDURE [dbo].[number_of_downloads]
+CREATE PROCEDURE [dbo].[insert_new_customer]
 	-- Add the parameters for the stored procedure here
-	@release_id decimal(2,1)
+	@first_name varchar(32),
+	@last_name varchar(32)
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -28,10 +27,9 @@ BEGIN
 
 BEGIN TRANSACTION
 BEGIN TRY
-    
-	SELECT COUNT(release_id) AS number_of_downloads, release_id FROM download
-	WHERE release_id = @release_id  
-	GROUP BY release_id
+   
+   INSERT INTO customer
+   VALUES (@first_name, @last_name)
 
  COMMIT TRANSACTION
 END TRY
@@ -47,6 +45,7 @@ BEGIN CATCH
     ROLLBACK TRANSACTION
 END CATCH
 END
+
 
 
 GO
